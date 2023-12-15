@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import User from "@/models/User";
@@ -7,7 +7,7 @@ import Log from "@/models/Log";
 import { ObjectId } from "mongodb";
 import { userLog } from "@/utils/server-actoions/log";
 
-export const authOptions: any = {
+export const authOptions: AuthOptions = {
   // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
