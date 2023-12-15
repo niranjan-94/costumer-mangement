@@ -14,6 +14,7 @@ interface DataType {
   address: string;
 }
 
+
 const Costumers = () => {
   const [list, setList] = useState([]);
   const router = useRouter();
@@ -90,6 +91,7 @@ const Costumers = () => {
       ),
     },
   ];
+
 
   return (
     <>

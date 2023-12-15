@@ -19,7 +19,7 @@ const SubmitButton = ({ form }: { form: FormInstance }) => {
         setSubmittable(false);
       }
     );
-  }, [values]);
+  }, [values,form]);
 
   return (
     <Button type="primary" htmlType="submit" disabled={!submittable}>
