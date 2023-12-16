@@ -6,14 +6,13 @@ import bcrypt from "bcryptjs";
 export const POST = async (request: any) => {
   const req = await request.json();
 
-  const existingCostumer = await Costumer.findOne({ email:req?.data?.email });
+  const existingCostumer = await Costumer.findOne({ email:req?.email });
   if (existingCostumer) {
     return new NextResponse("Email is already in use", { status: 400 });
   }
-
-  const hashedPassword = await bcrypt.hash(req?.data?.password, 5);
+  const hashedPassword = await bcrypt.hash(req?.password, 5);
   const newCostumer = new Costumer({
-    ...req?.data,
+    ...req,
     password: hashedPassword,
   });
 
@@ -21,7 +20,7 @@ export const POST = async (request: any) => {
     await newCostumer.save();
     return new NextResponse("Costumer is created", { status: 200 });
   } catch (err: any) {
-    return new NextResponse(err, {
+    return new NextResponse(err?._message, {
       status: 500,
     });
   }
